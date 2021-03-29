@@ -11,8 +11,7 @@ __Improving Calibration for Long-Tailed Recognition__ <br>
 
 # Contacts
 
-If you have any questions , please do not hesitate to contact us by emails.
+If you have any questions about our work, feel free to contact us through email (Zhisheng Zhong: zszhong@pku.edu.cn) or Github issues.
 
-Zhisheng Zhong: zszhong@pku.edu.cn
 
-If you have any questions about our work, feel free to contact us through email (yuzhe@mit.edu & zhixu@mit.edu) or Github issues.
+
