@@ -76,24 +76,47 @@ python eval.py --cfg ./config/DATASETNAME/DATASETNAME_ARCH_stage2_METHOD.yaml re
 
 **1) CIFAR-10-LT and CIFAR-100-LT**
 
-| Dataset              | Top-1 Acc. (Stage-1) | ECE (Stage-1) | Model Download | Top-1 Acc. (Stage-2) | ECE (Stage-2) | Model Download |
-| -------------------- | -------------------- | ------------- | -------------- | -------------------- | ------------- | -------------- |
-| CIFAR-10-LT   IF=10  |                      |               |                |                      |               |                |
-| CIFAR-10-LT   IF=50  |                      |               |                |                      |               |                |
-| CIFAR-10-LT   IF=100 |                      |               |                |                      |               |                |
-| CIFAR-100-LT IF=10   |                      |               |                |                      |               |                |
-| CIFAR-100-LT IF=50   |                      |               |                |                      |               |                |
-| CIFAR-100-LT IF=100  |                      |               |                |                      |               |                |
+* Stage-1:
+
+| Dataset              | Top-1 Accuracy | ECE  | Model |
+| -------------------- | -------------- | ---- | ----- |
+| CIFAR-10-LT   IF=10  |                |      |       |
+| CIFAR-10-LT   IF=50  |                |      |       |
+| CIFAR-10-LT   IF=100 |                |      |       |
+| CIFAR-100-LT IF=10   |                |      |       |
+| CIFAR-100-LT IF=50   |                |      |       |
+| CIFAR-100-LT IF=100  |                |      |       |
+
+* Stage-2:
+
+| Dataset              | Top-1 Accuracy | ECE  | Model |
+| -------------------- | -------------- | ---- | ----- |
+| CIFAR-10-LT   IF=10  |                |      |       |
+| CIFAR-10-LT   IF=50  |                |      |       |
+| CIFAR-10-LT   IF=100 |                |      |       |
+| CIFAR-100-LT IF=10   |                |      |       |
+| CIFAR-100-LT IF=50   |                |      |       |
+| CIFAR-100-LT IF=100  |                |      |       |
 
 *Note: To obtain better performance, we highly recommend changing the weight decay 2e-4 to 5e-4 on CIFAR-LT.*
 
 **2) Large-scale Datasets**
 
-| Dataset     | Arch       | Top-1 Acc. (Stage-1) | ECE (Stage-1) | Model Download | Top-1 Acc. (Stage-2) | ECE (Stage-2) | Model Download |
-| ----------- | ---------- | -------------------- | ------------- | -------------- | -------------------- | ------------- | -------------- |
-| ImageNet-LT | ResNet-50  |                      |               |                |                      |               |                |
-| iNa'2018    | ResNet-50  |                      |               |                |                      |               |                |
-| Places-LT   | ResNet-152 |                      |               |                |                      |               |                |
+* Stage-1:
+
+| Dataset     | Arch       | Top-1 Accuracy | ECE  | Model |
+| ----------- | ---------- | -------------- | ---- | ----- |
+| ImageNet-LT | ResNet-50  |                |      |       |
+| iNa'2018    | ResNet-50  |                |      |       |
+| Places-LT   | ResNet-152 |                |      |       |
+
+* Stage-2:
+
+| Dataset     | Arch       | Top-1 Accuracy | ECE  | Model |
+| ----------- | ---------- | -------------- | ---- | ----- |
+| ImageNet-LT | ResNet-50  |                |      |       |
+| iNa'2018    | ResNet-50  |                |      |       |
+| Places-LT   | ResNet-152 |                |      |       |
 
 ## <a name="Citation"></a>Citation
 
