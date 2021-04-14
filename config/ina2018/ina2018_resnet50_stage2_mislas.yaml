@@ -1,0 +1,53 @@
+name: ina2018_resnet50_stage2_mislas
+print_freq: 200
+workers: 48
+log_dir: 'logs'
+model_dir: 'ckps'
+
+
+# dataset & model setting
+dataset: 'ina2018'
+data_path: 'Path/to/Data/iNaturalist2018'
+num_classes: 8142
+imb_factor: null
+backbone: 'resnet50_fe'
+resume: 'Path/to/Stage1_checkpoint.pth.tar'
+head_class_idx:
+  - 0
+  - 842
+med_class_idx:
+  - 842
+  - 4543
+tail_class_idx:
+  - 4543
+  - 8142
+
+
+# distributed training
+deterministic: False
+distributed: False
+gpu: null
+world_size: -1
+rank: -1
+dist_url: 'tcp://224.66.41.62:23456'
+dist_backend: 'nccl'
+multiprocessing_distributed: False
+
+
+# Train
+mode: 'stage2'
+smooth_head: 0.3
+smooth_tail: 0.0
+shift_bn: True
+lr_factor: 0.05
+lr: 0.1
+batch_size: 256
+weight_decay: 1e-4
+num_epochs: 10
+momentum: 0.9
+mixup: False
+alpha: null
+
+
+
+
