@@ -69,12 +69,12 @@ The saved folder (including logs and checkpoints) is organized as follows.
 ```
 MiSLAS
 ├── saved
-│   ├── model name + date
+│   ├── modelname_date
 │   │   ├── ckps
 │   │   │   ├── current.pth.tar
 │   │   │   └── model_best.pth.tar
 │   │   └── logs
-│   │       └── model name.txt
+│   │       └── modelname.txt
 │   ...   
 ```
 ## Evaluation
