@@ -74,7 +74,7 @@ MiSLAS
 │   │   │   ├── current.pth.tar
 │   │   │   └── model_best.pth.tar
 │   │   └── logs
-│   │   │   └── model name.txt
+│   │       └── model name.txt
 │   ...   
 ```
 ## Evaluation
