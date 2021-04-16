@@ -59,7 +59,7 @@ python train_stage1.py --cfg ./config/DATASETNAME/DATASETNAME_ARCH_stage1_mixup.
 
 **Stage-2**:
 
-To train a model for Stage-2 with *one GPU*, run:
+To train a model for Stage-2 with *one GPU* (all the above datasets), run:
 
 ```
 python train_stage2.py --cfg ./config/DATASETNAME/DATASETNAME_ARCH_stage2_mislas.yaml resume /path/to/checkpoint/stage1
@@ -79,7 +79,7 @@ MiSLAS
 ```
 ## Evaluation
 
-To evaluate a pre-trained model, run:
+To evaluate a trained model, run:
 
 ```
 python eval.py --cfg ./config/DATASETNAME/DATASETNAME_ARCH_stage1_mixup.yaml  resume /path/to/checkpoint/stage1
