@@ -3,7 +3,7 @@
 
 **Authors**: Zhisheng Zhong, Jiequan Cui, Shu Liu, Jiaya Jia
 
-[[`arXiv`](https://arxiv.org/pdf/2104.00466.pdf)] [[`slide`]]() [[`BibTeX`](#Citation)]
+[[`arXiv`](https://arxiv.org/pdf/2104.00466.pdf)] [[`slide`]](./assets/MiSLAS.pdf) [[`BibTeX`](#Citation)]
 
 <div align="center">
   <img src="./assets/MiSLAS.PNG" style="zoom:90%;"/>
