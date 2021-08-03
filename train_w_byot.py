@@ -64,8 +64,7 @@ def parse_args():
 
     parser.add_argument('--model', metavar='ARCH', default='resnet32_byot',
                         help='model architecture')
-    parser.add_argument('--use_byot', action='store_true', help='use middle auxiliary fcs')
-    parser.add_argument('--loss_name_list', default=['CE', 'CE', 'CE', 'CE'], nargs='+',
+    parser.add_argument('--loss_name_list', default=['CE'], nargs='+',
                         help='which loss type to use on shallow fc layer')
 
     parser.add_argument('opts',
@@ -91,7 +90,10 @@ its_ece = 100
 
 def main():
     args = parse_args()
-
+    if len(args.loss_name_list)==3:
+        args.use_byot = True
+    else:
+        args.use_byot = False
     if args.dataset.startswith('imagenet'):
         dataset = args.dataset
     elif args.dataset.endswith('lt'):
@@ -99,10 +101,12 @@ def main():
     else:
         dataset = args.dataset
 
-    # loss_type = '_'.join(args.loss_name_list)
+    loss_type = '_'.join(args.loss_name_list)
     use_byot = (str)(args.use_byot)
     aplha_beta = '_'.join([(str)(args.temperature), (str)(args.alpha), (str)(args.beta)])
-    save_path = args.save_path = os.path.join(args.save_path, dataset, args.model, use_byot, aplha_beta)
+    save_path = args.save_path = os.path.join(args.save_path, dataset, args.model, use_byot, loss_type, aplha_beta)
+    print(save_path)
+    # return
     if not os.path.exists(save_path):
         os.makedirs(save_path)
     args.logger_file = os.path.join(save_path, 'log_train.txt')
