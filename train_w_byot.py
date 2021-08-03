@@ -149,7 +149,6 @@ def main_worker(args, ngpus_per_node):
     train_loader = dataset.train_instance
     val_loader = dataset.eval
 
-    # criterion = nn.CrossEntropyLoss().cuda()
     criterion_1, criterion_2, criterion_3 = get_loss(args, cls_num_list, device)
 
     optimizer = torch.optim.SGD(model.parameters(),
@@ -405,25 +404,28 @@ def get_loss(args, cls_num_list, device):
     from loss.FocalLoss import FocalLoss as focal
     from loss.LDAMLoss import LDAMLoss as ldam
     from loss.BalancedSoftmaxLoss import BalancedSoftmax as balanced_loss
+    if not args.use_byot:
+        return nn.CrossEntropyLoss.cuda(), nn.CrossEntropyLoss.cuda(), nn.CrossEntropyLoss.cuda()
+    else:
+        loss_name_list = args.loss_name_list
 
-    loss_name_list = args.loss_name_list
+        arg_list = {
+            'CE': {'cls_num_list': None, 'reweight_CE': False},
+            'focal': {'gamma': 1.0},
+            'LDAM': {'cls_num_list': cls_num_list},
+            'balanced': {'cls_num_list': cls_num_list},
+            'effective': {'cls_num_list': cls_num_list, 'reweight_CE': True}
+        }
 
-    arg_list = {
-        'CE': {'cls_num_list': None, 'reweight_CE': False},
-        'focal': {'gamma': 1.0},
-        'LDAM': {'cls_num_list': cls_num_list},
-        'balanced': {'cls_num_list': cls_num_list},
-        'effective': {'cls_num_list': cls_num_list, 'reweight_CE': True}
-    }
+        loss_dict = {
+            'CE': ce,
+            'focal': focal,
+            'LDAM': ldam,
+            'balanced': balanced_loss,
+            'effective': ce
+        }
+        return [loss_dict[loss_name](**arg_list[loss_name]).to(device) for loss_name in loss_name_list]
 
-    loss_dict = {
-        'CE': ce,
-        'focal': focal,
-        'LDAM': ldam,
-        'balanced': balanced_loss,
-        'effective': ce
-    }
-    return [loss_dict[loss_name](**arg_list[loss_name]).to(device) for loss_name in loss_name_list]
 
 if __name__ == '__main__':
     main()
