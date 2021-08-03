@@ -108,7 +108,7 @@ def main():
     print(save_path)
     # return
     if not os.path.exists(save_path):
-        os.makedirs(save_path)
+        os.makedirs(save_path, exist_ok=True)
     args.logger_file = os.path.join(save_path, 'log_train.txt')
     handlers = [logging.FileHandler(args.logger_file, mode='w'),
                 logging.StreamHandler()]
