@@ -61,8 +61,8 @@ class IMBALANCECIFAR10(torchvision.datasets.CIFAR10):
 
 class CIFAR10_LT(object):
 
-    def __init__(self, distributed, root='./data/cifar10', imb_type='exp',
-                    imb_factor=0.01, batch_size=128, num_works=40):
+    def __init__(self, root='./data/cifar10', imb_type='exp',
+                    imb_factor=0.01, batch_size=128, num_works=40, distributed=False):
 
         train_transform = transforms.Compose([
         transforms.RandomCrop(32, padding=4),

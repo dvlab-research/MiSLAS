@@ -10,6 +10,10 @@ _C.print_freq = 40
 _C.workers = 16
 _C.log_dir = 'logs'
 _C.model_dir = 'ckps'
+_C.use_byot = False
+_C.temperature = 3.0
+_C.alpha = 0.1
+_C.beta = 1e-6
 
 
 _C.dataset = 'cifar10'
