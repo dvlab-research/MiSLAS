@@ -96,10 +96,8 @@ def main():
         args.use_byot = False
     if args.dataset.startswith('imagenet'):
         dataset = args.dataset
-    elif args.dataset.endswith('lt'):
+    elif args.dataset.startswith(''):
         dataset = '_'.join([args.dataset, args.imb_type, (str)(args.imb_ratio)])
-    else:
-        dataset = args.dataset
 
     loss_type = '_'.join(args.loss_name_list)
     use_byot = (str)(args.use_byot)
