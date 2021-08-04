@@ -402,8 +402,10 @@ def get_loss(args, cls_num_list, device):
     from loss.FocalLoss import FocalLoss as focal
     from loss.LDAMLoss import LDAMLoss as ldam
     from loss.BalancedSoftmaxLoss import BalancedSoftmax as balanced_loss
-    if not args.use_byot:
-        return nn.CrossEntropyLoss().cuda(), nn.CrossEntropyLoss().cuda(), nn.CrossEntropyLoss().cuda()
+    if args.loss_name_list == ['CE']:
+        return None, None, nn.CrossEntropyLoss().cuda()
+    elif args.loss_name_list == ['balanced']:
+        return None, None, balanced_loss(cls_num_list).to(device)
     else:
         loss_name_list = args.loss_name_list
 
