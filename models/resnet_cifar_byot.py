@@ -130,7 +130,7 @@ class ResNet_byot(nn.Module):
             nn.BatchNorm2d(64* block.expansion),
         )
         self.bottleneck1_1 = branchBottleNeck(16 * block.expansion, 64 * block.expansion, kernel_size=8)
-        self.avgpool1 = nn.AdaptiveAvgPool2d((1, 1))
+        self.avgpool1 = nn.avg_pool2d((1, 1))
         self.middle_fc1 = nn.Linear(64 * block.expansion, num_classes)
 
         self.downsample2_1 = nn.Sequential(
@@ -138,10 +138,10 @@ class ResNet_byot(nn.Module):
             nn.BatchNorm2d(64 * block.expansion),
         )
         self.bottleneck2_1 = branchBottleNeck(32 * block.expansion, 64 * block.expansion, kernel_size=4)
-        self.avgpool2 = nn.AdaptiveAvgPool2d((1, 1))
+        self.avgpool2 = nn.avg_pool2d((1, 1))
         self.middle_fc2 = nn.Linear(64 * block.expansion, num_classes)
 
-        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.avgpool = nn.avg_pool2d((1, 1))
         self.linear = nn.Linear(64, num_classes)
 
         for m in self.modules():
