@@ -2,3 +2,4 @@ data/
 saved/
 runs/
 __pycache__/
+.gitigore
