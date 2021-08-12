@@ -15,7 +15,6 @@ _C.temperature = 3.0
 _C.alpha = 0.1
 _C.beta = 1e-6
 
-
 _C.dataset = 'cifar10'
 _C.data_path = './data/cifar10'
 _C.num_classes = 100
@@ -52,24 +51,27 @@ _C.cskd = False
 _C.temp = 0.0
 _C.lamda = 0.0
 
+
 def update_config(cfg, args):
     cfg.defrost()
-    
+
     cfg.merge_from_file(args.cfg)
     cfg.merge_from_list(args.opts)
 
     # cfg.freeze()
 
-def create_logger(cfg, cfg_name):    
+
+def create_logger(cfg, cfg_name, add_date=False):
     time_str = time.strftime('%Y%m%d%H%M')
 
     cfg_name = os.path.basename(cfg_name).split('.')[0]
-
-    log_dir = Path("saved")  / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
+    if add_date:
+        log_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
+    else:
+        log_dir = Path("saved") / cfg_name / Path(cfg.log_dir)
     print('=> creating {}'.format(log_dir))
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    
     log_file = '{}.txt'.format(cfg_name)
     final_log_file = log_dir / log_file
     head = '%(asctime)-15s %(message)s'
@@ -80,7 +82,7 @@ def create_logger(cfg, cfg_name):
     console = logging.StreamHandler()
     logging.getLogger('').addHandler(console)
 
-    model_dir =  Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.model_dir)
+    model_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.model_dir)
     print('=> creating {}'.format(model_dir))
     model_dir.mkdir(parents=True, exist_ok=True)
 
