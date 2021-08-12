@@ -65,10 +65,11 @@ def create_logger(cfg, cfg_name, add_date=False):
     time_str = time.strftime('%Y%m%d%H%M')
 
     cfg_name = os.path.basename(cfg_name).split('.')[0]
+    path = os.path.join('saved', cfg_name, cfg.num_epochs, cfg.batch_size)
     if add_date:
         log_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
     else:
-        log_dir = Path("saved") / cfg_name / Path(cfg.log_dir)
+        log_dir = os.path.join(path, 'logs')
     print('=> creating {}'.format(log_dir))
     log_dir.mkdir(parents=True, exist_ok=True)
 
@@ -82,7 +83,7 @@ def create_logger(cfg, cfg_name, add_date=False):
     console = logging.StreamHandler()
     logging.getLogger('').addHandler(console)
 
-    model_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.model_dir)
+    model_dir = os.path.join(path, 'ckps')
     print('=> creating {}'.format(model_dir))
     model_dir.mkdir(parents=True, exist_ok=True)
 
