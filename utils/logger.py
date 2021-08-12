@@ -71,7 +71,7 @@ def create_logger(cfg, cfg_name, add_date=False):
     else:
         log_dir = os.path.join(path, 'logs')
     print('=> creating {}'.format(log_dir))
-    log_dir.mkdir(parents=True, exist_ok=True)
+    os.makedirs(log_dir, exist_ok=True)
 
     log_file = '{}.txt'.format(cfg_name)
     final_log_file = log_dir / log_file
@@ -85,6 +85,6 @@ def create_logger(cfg, cfg_name, add_date=False):
 
     model_dir = os.path.join(path, 'ckps')
     print('=> creating {}'.format(model_dir))
-    model_dir.mkdir(parents=True, exist_ok=True)
+    os.makedirs(model_dir, exist_ok=True)
 
     return logger, str(model_dir)
