@@ -37,7 +37,7 @@ def parse_args():
     #                     required=True,
     #                     type=str)
     parser.add_argument('--save-path', default='./runs', type=str)
-    parser.add_argument('--data-dir', default='./data', type=str,
+    parser.add_argument('--data-dir', default='./data/cifar100', type=str,
                         help='the diretory to save cifar100 dataset')
     parser.add_argument('--dataset', '-d', type=str, default='cifar100',
                         choices=['cifar10', 'cifar100', 'imagenet'],
@@ -58,7 +58,7 @@ def parse_args():
     parser.add_argument('--print-freq', default=100, type=int,
                         help='print frequency (default: 10)')
 
-    parser.add_argument('--workers', default=2)
+    parser.add_argument('--workers', default=2, type=int)
     parser.add_argument('--log_dir', default='./logs')
     parser.add_argument('--model_dir', default='./ckps')
 

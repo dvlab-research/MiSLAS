@@ -16,6 +16,7 @@ class IMBALANCECIFAR100(torchvision.datasets.CIFAR100):
         np.random.seed(rand_number)
         img_num_list = self.get_img_num_per_cls(self.cls_num, imb_type, imb_factor)
         self.gen_imbalanced_data(img_num_list)
+        print(self.get_cls_num_list())
 
     def get_img_num_per_cls(self, cls_num, imb_type, imb_factor):
         img_max = len(self.data) / cls_num

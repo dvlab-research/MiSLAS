@@ -204,12 +204,12 @@ def main_worker(gpu, ngpus_per_node, config, logger, model_dir):
 
     # Data loading code
     if config.dataset == 'cifar10':
-        dataset = CIFAR10_LT(config.distributed, root=config.data_path, imb_factor=config.imb_factor,
-                             batch_size=config.batch_size, num_works=config.workers)
+        dataset = CIFAR10_LT(root=config.data_path, imb_factor=config.imb_factor,
+                              batch_size=config.batch_size, num_works=config.workers, distributed=config.distributed)
 
     elif config.dataset == 'cifar100':
-        dataset = CIFAR100_LT(config.distributed, root=config.data_path, imb_factor=config.imb_factor,
-                              batch_size=config.batch_size, num_works=config.workers)
+        dataset = CIFAR100_LT(root=config.data_path, imb_factor=config.imb_factor,
+                              batch_size=config.batch_size, num_works=config.workers, distributed=config.distributed)
 
     elif config.dataset == 'places':
         dataset = Places_LT(config.distributed, root=config.data_path,

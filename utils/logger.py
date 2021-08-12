@@ -48,6 +48,9 @@ _C.momentum = 0.9
 _C.cos = False
 _C.mixup = True
 _C.alpha = 1.0
+_C.cskd = False
+_C.temp = 0.0
+_C.lamda = 0.0
 
 def update_config(cfg, args):
     cfg.defrost()
