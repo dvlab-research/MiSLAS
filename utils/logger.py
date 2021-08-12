@@ -74,7 +74,7 @@ def create_logger(cfg, cfg_name, add_date=False):
     os.makedirs(log_dir, exist_ok=True)
 
     log_file = '{}.txt'.format(cfg_name)
-    final_log_file = log_dir / log_file
+    final_log_file = os.path.join(log_dir, log_file)
     head = '%(asctime)-15s %(message)s'
     logging.basicConfig(filename=str(final_log_file),
                         format=head)
