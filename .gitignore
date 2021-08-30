@@ -3,3 +3,5 @@ saved/
 runs/
 __pycache__/
 .gitigore
+pretrained/
+.idea/
