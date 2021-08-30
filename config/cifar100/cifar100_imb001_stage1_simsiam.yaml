@@ -3,7 +3,7 @@ print_freq: 40
 workers: 4
 log_dir: 'logs'
 model_dir: 'ckps'
-simsiam: '/home/vision/jhkim/simsiam/runs/cifar100_lt_0.01_1.0_256_800/stage1/checkpoint_last.pth.tar'
+simsiam: './pretrinaed/cifar100_lt_0.01.pth.tar'
 
 # dataset & model setting
 dataset: 'cifar100'

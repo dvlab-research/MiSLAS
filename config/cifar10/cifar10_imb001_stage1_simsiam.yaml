@@ -1,14 +1,15 @@
-name: cifar10_imb01_stage1_simsiam
+name: cifar10_imb001_stage1_simsiam
 print_freq: 40
-workers: 16
+workers: 4
 log_dir: 'logs'
 model_dir: 'ckps'
-simsiam: './pretrinaed'
+simsiam: './pretrinaed/cifar10_lt_0.01.pth.tar'
+
 # dataset & model setting
 dataset: 'cifar10'
 data_path: './data/cifar10'
 num_classes: 10
-imb_factor: 0.1
+imb_factor: 0.01
 backbone: 'resnet32_fe'
 resume: ''
 head_class_idx:
