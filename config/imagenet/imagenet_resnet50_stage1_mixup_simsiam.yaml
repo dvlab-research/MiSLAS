@@ -1,13 +1,13 @@
 name: imagenet_resnet50_stage1_mixup_simsiam
 print_freq: 100
-workers: 48
+workers: 16
 log_dir: 'logs'
 model_dir: 'ckps'
-simsiam: '/home/vision/jhkim/simsiam/runs/cifar100_lt_0.1_1.0_256_800/stage1/checkpoint_last.pth.tar'
+simsiam: './pretrained/imagenet_lt_simsiam.pth.tar'
 
 # dataset & model setting
 dataset: 'imagenet'
-data_path: 'Path/to/Data/ImageNet/'
+data_path: './data/imagenet/'
 num_classes: 1000
 imb_factor: null
 backbone: 'resnet50_fe'
