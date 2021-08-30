@@ -11,7 +11,10 @@ _C.workers = 16
 _C.log_dir = 'logs'
 _C.model_dir = 'ckps'
 _C.simsiam = None
+<<<<<<< HEAD
 _C.binary = False
+=======
+>>>>>>> 931e999f79b74b68c72a9ef97435954850cae24b
 
 _C.use_byot = False
 _C.temperature = 3.0
@@ -48,8 +51,13 @@ _C.weight_decay = 0.002
 _C.num_epochs = 200
 _C.momentum = 0.9
 _C.cos = False
+<<<<<<< HEAD
 _C.mixup = False
 _C.alpha = 0.0
+=======
+_C.mixup = True
+_C.alpha = 1.0
+>>>>>>> 931e999f79b74b68c72a9ef97435954850cae24b
 _C.cskd = False
 _C.temp = 0.0
 _C.lamda = 0.0
@@ -68,6 +76,7 @@ def create_logger(cfg, cfg_name, add_date=False):
     # time_str = time.strftime('%Y%m%d%H%M')
 
     cfg_name = os.path.basename(cfg_name).split('.')[0]
+<<<<<<< HEAD
     if cfg.binary:
         path = os.path.join('saved/binary', cfg_name,
                             '_'.join(['epochs', (str)(cfg.num_epochs), 'bs' + (str)(cfg.batch_size)])
@@ -76,6 +85,11 @@ def create_logger(cfg, cfg_name, add_date=False):
         path = os.path.join('saved', cfg_name,
                             '_'.join(['epochs',(str)(cfg.num_epochs), 'bs' + (str)(cfg.batch_size)])
                             )
+=======
+    path = os.path.join('saved', cfg_name,
+                        '_'.join(['epochs',(str)(cfg.num_epochs), 'bs' + (str)(cfg.batch_size)])
+                        )
+>>>>>>> 931e999f79b74b68c72a9ef97435954850cae24b
     # if add_date:
     #     log_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
     # else:
