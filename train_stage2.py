@@ -191,14 +191,23 @@ def main_worker(gpu, ngpus_per_node, config, logger, model_dir):
                 # Map model to be loaded to specified single gpu.
                 loc = 'cuda:{}'.format(config.gpu)
                 checkpoint = torch.load(config.resume, map_location=loc)
-            # config.start_epoch = checkpoint['epoch']
+            state_dict_model = checkpoint['state_dict_model']
+            state_dict_classifier = checkpoint['state_dict_classifier']
+            # for k in list(state_dict_model.keys()):
+            #     state_dict_model['module.' + k] = state_dict_model[k]
+            #     del state_dict_model[k]
+            # for k in list(state_dict_classifier.keys()):
+            #     state_dict_classifier['module.'+k] = state_dict_classifier[k]
+            #     del state_dict_classifier[k]
+
+            config.start_epoch = checkpoint['epoch']
             best_acc1 = checkpoint['best_acc1']
             its_ece = checkpoint['its_ece']
             if config.gpu is not None:
                 # best_acc1 may be from a checkpoint from a different GPU
                 best_acc1 = best_acc1.to(config.gpu)
-            model.load_state_dict(checkpoint['state_dict_model'])
-            classifier.load_state_dict(checkpoint['state_dict_classifier'])
+            model.load_state_dict(state_dict_model)
+            classifier.load_state_dict(state_dict_classifier)
             if config.dataset == 'places':
                 block.load_state_dict(checkpoint['state_dict_block'])
             logger.info("=> loaded checkpoint '{}' (epoch {})"
@@ -208,8 +217,8 @@ def main_worker(gpu, ngpus_per_node, config, logger, model_dir):
 
     # Data loading code
     if config.dataset == 'cifar10':
-        dataset = CIFAR10_LT(config.distributed, root=config.data_path, imb_factor=config.imb_factor,
-                             batch_size=config.batch_size, num_works=config.workers)
+        dataset = CIFAR10_LT(root=config.data_path, imb_factor=config.imb_factor,
+                             batch_size=config.batch_size, num_works=config.workers, distributed=config.distributed)
 
     elif config.dataset == 'cifar100':
         dataset = CIFAR100_LT(root=config.data_path, imb_factor=config.imb_factor,

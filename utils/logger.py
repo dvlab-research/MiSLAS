@@ -10,6 +10,8 @@ _C.print_freq = 40
 _C.workers = 16
 _C.log_dir = 'logs'
 _C.model_dir = 'ckps'
+_C.simsiam = None
+
 _C.use_byot = False
 _C.temperature = 3.0
 _C.alpha = 0.1
@@ -62,14 +64,16 @@ def update_config(cfg, args):
 
 
 def create_logger(cfg, cfg_name, add_date=False):
-    time_str = time.strftime('%Y%m%d%H%M')
+    # time_str = time.strftime('%Y%m%d%H%M')
 
     cfg_name = os.path.basename(cfg_name).split('.')[0]
-    path = os.path.join('saved', cfg_name, ('epochs_' + (str)(cfg.num_epochs)), (('bs_') + (str)(cfg.batch_size)))
-    if add_date:
-        log_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
-    else:
-        log_dir = os.path.join(path, 'logs')
+    path = os.path.join('saved', cfg_name,
+                        '_'.join(['epochs',(str)(cfg.num_epochs), 'bs' + (str)(cfg.batch_size)])
+                        )
+    # if add_date:
+    #     log_dir = Path("saved") / (cfg_name + '_' + time_str) / Path(cfg.log_dir)
+    # else:
+    log_dir = os.path.join(path, 'logs')
     print('=> creating {}'.format(log_dir))
     os.makedirs(log_dir, exist_ok=True)
 

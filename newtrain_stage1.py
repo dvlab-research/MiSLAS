@@ -35,6 +35,7 @@ from utils import accuracy, calibration
 from methods import mixup_data, mixup_criterion
 
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description='MiSLAS training (Stage-1)')
     parser.add_argument('--cfg',
@@ -193,20 +194,12 @@ def main_worker(gpu, ngpus_per_node, config, logger, model_dir):
         if os.path.isfile(config.simsiam):
             logger.info("=> loading pretrained weight '{}'".format(config.resume))
             if config.gpu is None:
-                # checkpoint = torch.jit.load(config.simsiam)
-                checkpoint = torch.load(config.simsiam)
+                checkpoint = torch.jit.load(config.simsiam)
             else:
                 # Map model to be loaded to specified single gpu.
                 loc = 'cuda:{}'.format(config.gpu)
-                # checkpoint = torch.jit.load(config.simsiam, map_location=loc)
-                checkpoint = torch.load(config.simsiam, map_location=loc)
-
-            state_dict = checkpoint['state_dict']
-
-            for k in list(state_dict.keys()):
-                if k.startswith('encoder') and not k.startswith('encoder.linear'):
-                    state_dict[k[len("encoder."):]] = state_dict[k]
-                del state_dict[k]
+                checkpoint = torch.jit.load(config.simsiam, map_location=loc)
+            # config.start_epoch = checkpoint['epoch']
 
             model.load_state_dict(checkpoint['state_dict'], strict=False)
             # classifier.load_state_dict(checkpoint['state_dict_classifier'])
