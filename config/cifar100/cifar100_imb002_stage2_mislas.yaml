@@ -1,0 +1,49 @@
+name: cifar100_imb002_stage2_mislas
+print_freq: 40
+workers: 4
+log_dir: 'logs'
+model_dir: 'ckps'
+
+
+# dataset & model setting
+dataset: 'cifar100'
+data_path: './data/cifar100'
+num_classes: 100
+imb_factor: 0.02
+backbone: 'resnet32_fe'
+resume: 'Path/to/Stage1_checkpoint.pth.tar'
+head_class_idx:
+  - 0
+  - 36
+med_class_idx:
+  - 36
+  - 71
+tail_class_idx:
+  - 71
+  - 100
+
+
+# distributed training
+deterministic: False
+distributed: False
+gpu: null
+world_size: -1
+rank: -1
+dist_url: 'tcp://224.66.41.62:23456'
+dist_backend: 'nccl'
+multiprocessing_distributed: False
+
+
+# Train
+mode: 'stage2'
+smooth_head: 0.3
+smooth_tail: 0.0
+shift_bn: True
+lr_factor: 0.1
+lr: 0.1
+batch_size: 128
+weight_decay: 2e-4
+num_epochs: 10
+momentum: 0.9
+mixup: False
+alpha: null
