@@ -3,7 +3,7 @@ print_freq: 100
 workers: 16
 log_dir: 'logs'
 model_dir: 'ckps'
-simsiam: './pretrained/imagenet_lt_simsiam.pth.tar'
+simsiam: './pretrained/imagenet_lt.pth.tar'
 
 # dataset & model setting
 dataset: 'imagenet'
